@@ -18,7 +18,7 @@ export default function Home() {
         The parent container size dictates the scroll length and therefore animation speed.
         A 500vh container ensures a long, smooth scrolling experience interacting with the 240 frames
       */}
-      <div className="content-container">
+      <div className="content-container" style={{ position: "relative", zIndex: 10 }}>
         <HeroText />
         
         <div style={{ height: '40vh' }}></div>
