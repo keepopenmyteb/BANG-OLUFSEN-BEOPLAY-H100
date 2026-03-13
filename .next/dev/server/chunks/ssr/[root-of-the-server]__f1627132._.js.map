@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///Users/loner/Desktop/BANG%20%26%20OLUFSEN/BANG%20%26%20OLUFSEN-BEOPLAY-H100/app/page.tsx"],"sourcesContent":["export default function Home() {\n  return (\n    <main style={{ padding: '2rem' }}>\n      <h1>Beoplay H100 Next.js Setup</h1>\n      <p>Project is running correctly!</p>\n    </main>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAK,OAAO;YAAE,SAAS;QAAO;;0BAC7B,8OAAC;0BAAG;;;;;;0BACJ,8OAAC;0BAAE;;;;;;;;;;;;AAGT"}}]
-}
