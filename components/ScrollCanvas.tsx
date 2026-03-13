@@ -9,7 +9,7 @@ export default function ScrollCanvas() {
   const frameId = useRef<number>(0);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const lastFrameDrawn = useRef(-1);
-  const TOTAL_FRAMES = 240;
+  const TOTAL_FRAMES = 129;
 
   useEffect(() => {
     // 1) Preload Image Sequence inline
@@ -37,8 +37,8 @@ export default function ScrollCanvas() {
            loadedCount++; // prevent hanging
         };
 
-        // Set src last explicitly targeting the new high-efficiency webp sequence
-        img.src = `/frames/ezgif-frame-${paddedIndex}.webp`;
+        // Set src last explicitly targeting the new high-efficiency webp sequence in frames
+        img.src = `/frames/frame_${paddedIndex}.webp`;
         imagesRef.current.push(img);
       }
     };
@@ -58,7 +58,7 @@ export default function ScrollCanvas() {
         p = Math.max(0, Math.min(1, p)); // Clamp progress 0.0 - 1.0
         
         // Match user's specific requested interpolation logic
-        const frameIndex = Math.floor(p * 239) + 1;
+        const frameIndex = Math.floor(p * 128) + 1;
         
         // Dirty-check optimization: only trigger redraw if the index actually changes
         if (frameIndex !== lastFrameDrawn.current) {
@@ -85,7 +85,7 @@ export default function ScrollCanvas() {
     const ctx = canvasRef.current.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    // The array is 0-indexed, but our frames are 1-240
+    // The array is 0-indexed, but our frames are 1-129
     const img = imagesRef.current[index - 1];
     
     // Ensure image is actually loaded natively before drawing
@@ -103,7 +103,8 @@ export default function ScrollCanvas() {
       ctx.scale(dpr, dpr);
     }
     // Calculate scale by taking the minimum of window.innerWidth / img.width and window.innerHeight / img.height
-    const scale = Math.min(window.innerWidth / img.width, window.innerHeight / img.height);
+    // Multiply by 0.75 to shrink the massive headphones and give them elegant breathing room on screen
+    const scale = Math.min(window.innerWidth / img.width, window.innerHeight / img.height) * 0.75;
     
     const drawWidth = img.width * scale;
     const drawHeight = img.height * scale;
@@ -139,7 +140,7 @@ export default function ScrollCanvas() {
         const maxScroll = document.body.scrollHeight - window.innerHeight;
         let p = maxScroll > 0 ? scrollY.current / maxScroll : 0;
         p = Math.max(0, Math.min(1, p));
-        const frameIndex = Math.floor(p * 239) + 1;
+        const frameIndex = Math.floor(p * 128) + 1;
         drawFrame(frameIndex);
       }
     };
